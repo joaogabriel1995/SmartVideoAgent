@@ -9,10 +9,11 @@ from tasks.text_classification_task import TextClassificationTask
 from tools.huggingFaceTool import HuggingFaceTool
 
 from crewai import Crew,Process
-
 from dotenv import load_dotenv
-load_dotenv()
+import os
 
+load_dotenv()
+HUGGING_FACE_KEY = os.getenv('HUGGING_FACE_KEY')
 class VideosInsightsCrew:
 
     def __init__(self, input_file):
@@ -22,7 +23,7 @@ class VideosInsightsCrew:
 
         # tools
 
-        huggingFaceTool =HuggingFaceTool("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", "https://api-inference.huggingface.co/models/facebook/bart-large-mnli")
+        huggingFaceTool =HuggingFaceTool(HUGGING_FACE_KEY, "https://api-inference.huggingface.co/models/facebook/bart-large-mnli")
 
 
         #agents Class
