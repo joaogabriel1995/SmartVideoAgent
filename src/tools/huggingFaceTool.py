@@ -49,8 +49,12 @@ class HuggingFaceTool:
 
 
 if __name__ == "__main__":
-        
-    huggingFaceTool =HuggingFaceTool("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", "https://api-inference.huggingface.co/models/facebook/bart-large-mnli")
+    from dotenv import load_dotenv
+
+    import os
+    HUGGING_FACE_KEY = os.getenv('HUGGING_FACE_KEY')
+    load_dotenv()
+    huggingFaceTool =HuggingFaceTool(HUGGING_FACE_KEY, "https://api-inference.huggingface.co/models/facebook/bart-large-mnli")
 
     content = {
     "inputs": "I love the product! It's amazing and works perfectly.",
