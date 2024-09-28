@@ -2,6 +2,8 @@ from crewai import Task
 from textwrap import dedent
 from datetime import date
 from tools.huggingFaceTool import HuggingFaceTool
+from tools.splite_text import Helpers
+
 class TextClassificationTask:
     def __init__(self,huggingFaceToolInstance: HuggingFaceTool):
         self.huggingFaceToolInstance = huggingFaceToolInstance
@@ -9,16 +11,24 @@ class TextClassificationTask:
 
     def text_classification(self, agent, input_file, candidate_labels=["felicidade", "tristeza", "surpresa", "raiva"]):
         
-        with open(input_file, 'r') as file:
-            content = file.read()  # Lê o conteúdo do arquivo
-            print(content)  # Exibe o conteúdo do arquivo
+            # helpers = Helpers().split_text(input_file)  # Helper para dividir o texto
+            text = []
+            with open(input_file, 'r') as file:
+                content = file.read()  # Lê o conteúdo do arquivo
+                # segmentos = content.split("Texto")
+                # split = []
+            
+            # for i in range(len(helpers)):
+            classification = self.huggingFaceToolInstance.call_model(content, candidate_labels)
+            text.append(classification)
+            
             return Task(
                 description=dedent(f"""
                     Analisar o conteúdo de uma transcrição de vídeo e classificar os momentos em sentimentos: positivos, neutros e negativos.
                     Certifique-se de destacar os momentos que maximizam o impacto emocional e contribuem para a fluidez do vídeo final.
                     
                     **Transcrição fornecida:**
-                    {content}
+                    {text}
                     
                     Utilizando a ferramenta self.huggingFaceToolInstance.call_model(content, candidate_labels)
                     gere as seguintes classificações;
@@ -49,5 +59,5 @@ class TextClassificationTask:
 
                     
                 """),
-                tools=[self.huggingFaceToolInstance.call_model(content, candidate_labels)]
+                tools=[self.huggingFaceToolInstance.call_model]
             )

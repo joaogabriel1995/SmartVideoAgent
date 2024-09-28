@@ -42,6 +42,8 @@ class VideosInsightsCrew:
         text_classification_task = TextClassificationTask(huggingFaceTool)
 
         #task
+
+    
         text_classification_task = text_classification_task.text_classification(
             classification_agent,
             self.input_file

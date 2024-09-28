@@ -14,39 +14,68 @@ class VideosInsightsTasks:
                     Analisar o conteúdo de um arquivo de transcrição de vídeo, o documento gerado pelo agente de classificação:
                     {classified_transcript}
 
-                    Sugerir os melhores momentos para cortes estratégicos.
-                    Utilize técnicas de análise de texto para identificar mudanças de tema, ritmo ou momentos importantes.
-                    Certifique-se de que os momentos selecionados maximizem o impacto e a fluidez do vídeo final.
-                    Transcrição fornecida:
-                    {content}
-                    Identifique pontos altos do conteúdo: Procure partes onde o apresentador demonstra mais entusiasmo ou compartilha informações importantes.
-                    Encontre momentos emocionalmente impactantes: Segmentos que provocam humor, surpresa ou inspiração tendem a engajar mais.
-                    Busque por frases marcantes ou citações: Destaque expressões memoráveis ou insights profundos.
-                    Aproveite conteúdos visualmente atraentes: Selecione momentos com elementos visuais interessantes ou demonstrações práticas.
-                    Identifique tópicos em alta ou tendências: Aborde assuntos que estão em evidência para aumentar a relevância.
-                    Utilize cliffhangers ou teasers: Escolha trechos que deixem o espectador curioso.
-                    Foque em histórias completas e concisas: Conte mini-histórias com início, meio e fim em até 1 minuto.
-                    Analise palavras-chave na transcrição: Identifique termos populares ou muito pesquisados para potencializar o alcance.
-                    Para criar nomes chamativos:
+                    **Objetivo:**
+                    Identificar e sugerir o máximo de momentos possíveis para cortes estratégicos que possam ser transformados em vídeos curtos de até 1 minuto.
 
-                    Use palavras de ação e termos poderosos: Utilize verbos fortes e adjetivos impactantes.
-                    Crie senso de urgência ou curiosidade: Títulos que provocam questionamentos incentivam cliques.
-                    Seja objetivo e direto: Títulos curtos e claros são mais eficazes em formatos curtos.
-                    Inclua números ou listas quando relevante: Números chamam atenção e organizam o conteúdo.
-                    Utilize perguntas provocativas: Engaje o espectador desde o início com perguntas.
-                    Incorpore palavras-chave relevantes: Melhore a otimização de busca (SEO) do conteúdo.
-                    Evite clickbait exagerado: Garanta que o título reflita o conteúdo real para não frustrar o público.
-                    Personalize para o público-alvo: Adapte a linguagem e o estilo ao perfil dos espectadores.
+                    **Instruções:**
+                    - Utilize técnicas de análise de texto para identificar mudanças de tema, momentos de maior impacto ou destaque.
+                    - Selecione trechos que maximizem o engajamento, mantendo fluidez e impacto.
+                    - Os cortes devem ter entre **50 a 60 segundos**. Cortes fora desse intervalo não poderão ser utilizados.
+                    - Distribua os cortes ao longo de todo o vídeo: inclua trechos do início, meio e fim da transcrição.
+                    - Cada corte será postado separadamente como um vídeo curto (short).
+
+                    **Transcrição fornecida:**
+                    {content}
+
+                    **Dicas para seleção de cortes:**
+                    - **Pontos altos do conteúdo:** Partes onde o apresentador demonstra mais entusiasmo ou compartilha informações importantes.
+                    - **Momentos emocionalmente impactantes:** Segmentos que provocam humor, surpresa ou inspiração.
+                    - **Frases marcantes ou citações:** Expressões memoráveis ou insights profundos.
+                    - **Conteúdos visualmente atraentes:** Momentos com elementos visuais interessantes ou demonstrações práticas.
+                    - **Tópicos em alta ou tendências:** Assuntos que estão em evidência para aumentar a relevância.
+                    - **Cliffhangers ou teasers:** Trechos que deixam o espectador curioso.
+                    - **Histórias completas e concisas:** Mini-histórias com início, meio e fim em até 1 minuto.
+                    - **Palavras-chave populares:** Termos muito pesquisados para potencializar o alcance.
+
+                    **Dicas para criação de títulos chamativos:**
+                    - Use palavras de ação e termos poderosos (verbos fortes e adjetivos impactantes).
+                    - Crie senso de urgência ou curiosidade.
+                    - Seja objetivo e direto; títulos curtos e claros são mais eficazes.
+                    - Inclua números ou listas quando relevante.
+                    - Utilize perguntas provocativas.
+                    - Incorpore palavras-chave relevantes para SEO.
+                    - Evite clickbait exagerado; o título deve refletir o conteúdo real.
+                    - Personalize para o público-alvo; adapte a linguagem e o estilo.
+
+                    Sempre responda em português (pt-BR).
                 """),
                 agent=agent,
-                expected_output='''Gerar uma lista com os 10 momentos mais destacados para cortes estratégicos em um vídeo, com base na transcrição fornecida.
-                    1. **Título atrativo:** Sugestões de títulos com elementos chamativos (incluindo clickbait) que aumentem o apelo do vídeo, especialmente considerando o estilo de grandes criadores de conteúdo no YouTube e TikTok.
+                expected_output=dedent(f"""
+                    **Instruções para o Output:**
+
+                    Gere uma lista com o **máximo de momentos destacados possíveis** para cortes estratégicos no vídeo, com base na transcrição fornecida.
+
+                    Para **cada corte**, forneça:
+
+                    1. **Título atrativo:** Sugestão de um título chamativo (incluindo elementos de clickbait) que aumente o apelo do vídeo, especialmente considerando o estilo de grandes criadores de conteúdo no YouTube e TikTok.
                     2. **Justificativa:** Breve explicação do motivo da escolha do corte, levando em conta o impacto visual, emocional ou informativo.
                     3. **Timestamp:** Tempo inicial e final do corte em segundos decorridos.
-                    4. **Resumo do corte:** Indicar a hora e minuto de início e fim do corte (convertido dos timestamps).
-                    Os cortes devem ser selecionados para maximizar engajamento, mantendo fluidez e impacto. A análise deve identificar momentos de mudança de tema, clímax ou trechos que se destacam. 
-                    Os cortes devem ter no MíNIMO 50 segundos. Se estiver fora desse intervalo de tempo não poderá ser utilizado.
-                    Pegar cortes distribuidos pelo video ou seja, cortes que estão no inicio da transcrição, no meio e no fim.
-                                        ''',
+                    4. **Resumo do corte:** Breve descrição do conteúdo do corte.
+
+                    **Observações:**
+                    - Certifique-se de que cada corte tenha entre **50 a 60 segundos**.
+                    - Os cortes devem estar distribuídos ao longo de todo o vídeo.
+                    - Lembre-se de que esses cortes serão postados separadamente como vídeos curtos.
+
+                    **Exemplo de Output:**
+
+                    **Corte 1:**
+                    1. **Título atrativo:** "Descubra o Segredo por Trás do Sucesso Repentino!"
+                    2. **Justificativa:** Momento em que o apresentador revela insights surpreendentes sobre estratégias eficazes.
+                    3. **Timestamp:** Início: 120s, Fim: 180s
+                    4. **Resumo do corte:** O apresentador compartilha dicas valiosas sobre como alcançar o sucesso em pouco tempo.
+
+                    (Repita o formato para cada corte identificado.)
+                """),
                 tools=[]
             )
